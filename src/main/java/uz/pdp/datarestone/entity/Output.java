@@ -1,5 +1,6 @@
 package uz.pdp.datarestone.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -34,5 +36,9 @@ public class Output {
 
     @ManyToOne
     private Client client;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "output", cascade = CascadeType.ALL)
+    private List<OutputProduct> outputProducts;
 
 }

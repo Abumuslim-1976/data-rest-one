@@ -1,5 +1,6 @@
 package uz.pdp.datarestone.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,7 +35,8 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @ManyToMany
+    @JsonIgnore
+    @ManyToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Warehouse> warehouses;
 
 }

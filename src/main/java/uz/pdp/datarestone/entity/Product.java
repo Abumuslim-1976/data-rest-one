@@ -1,10 +1,12 @@
 package uz.pdp.datarestone.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -32,4 +34,12 @@ public class Product {
 
     @OneToOne
     private Attachment attachmentPhoto;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
+    private List<InputProduct> inputProducts;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
+    private List<OutputProduct> outputProducts;
 }
